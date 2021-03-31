@@ -1,4 +1,9 @@
-<form class="d-flex" #addTodoForm="ngForm" (ngSubmit)="onSubmit()">
+<form
+  class="d-flex"
+  #addTodoForm="ngForm"
+  (ngSubmit)="onSubmit()"
+  ngNativeValidate
+>
   <input
     type="text"
     name="title"
@@ -6,6 +11,7 @@
     style="flex: 10"
     ngModel
     #title="ngModel"
+    required
   />
   <input class="btn btn-dark" style="flex: 1" type="submit" />
 </form>

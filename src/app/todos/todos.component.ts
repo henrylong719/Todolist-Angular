@@ -23,7 +23,8 @@ export class TodosComponent implements OnInit {
   }
 
   onAddTodo(todo: Todo) {
-    // this.todos.push(todo);
+    // console.log(todo);
+    this.todos.push(todo);
     this.todoService.addTodos(todo);
   }
 }

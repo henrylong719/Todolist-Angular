@@ -9,6 +9,7 @@ import { TodosComponent } from './todos/todos.component';
 import { TodoItemComponent } from './todos/todo-item/todo-item.component';
 import { AddTodoComponent } from './todos/add-todo/add-todo.component';
 import { FormsModule } from '@angular/forms';
+import { ProfileComponent } from './shared/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     TodosComponent,
     TodoItemComponent,
     AddTodoComponent,
+    ProfileComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FontAwesomeModule, FormsModule],
   providers: [],
