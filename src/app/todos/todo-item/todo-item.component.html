@@ -1,23 +1,28 @@
-<div class="card my-3 mx-2 rounded" style="width: 20rem">
-  <div class="card-body">
-    <h5 class="card-header">header</h5>
-    <div class="card-body">
-      <p
-        class="card-text"
-        [ngStyle]="{ textDecoration: todo.completed ? 'line-through' : 'none' }"
-      >
-        <strong>{{ todo.title }}</strong>
-      </p>
-    </div>
+<div class="col sm-12 md-6 lg-4 xl-3">
+  <div class="card my-3 mx-2 rounded" style="width: 18rem">
+    <div
+      class="card-body p-0"
+      [ngStyle]="{ textDecoration: todo.completed ? 'line-through' : 'none' }"
+    >
+      <h5 class="card-header">Header</h5>
+      <div class="card-body">
+        <p class="card-text">
+          <strong>{{ todo.title }}</strong>
+        </p>
+      </div>
 
-    <div class="card-footer">
-      <button class="btn btn-sm btn-light">
-        <fa-icon [icon]="faCheck"></fa-icon>
-      </button>
+      <div class="card-footer">
+        <button class="btn btn-sm btn-light" (click)="onToggle(todo)">
+          <fa-icon [icon]="faCheck"></fa-icon>
+        </button>
 
-      <button class="btn btn-sm btn-light float-right">
-        <fa-icon [icon]="faTrashAlt"></fa-icon>
-      </button>
+        <button
+          class="btn btn-sm btn-light float-right"
+          (click)="onDelete(todo)"
+        >
+          <fa-icon [icon]="faTrashAlt"></fa-icon>
+        </button>
+      </div>
     </div>
   </div>
 </div>

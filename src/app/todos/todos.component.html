@@ -1,5 +1,12 @@
-<div class="container-fluid">
-  <div class="row justify-content-around">
-    <app-todo-item *ngFor="let todoEl of todos" [todo]="todoEl"></app-todo-item>
+<div>
+  <app-add-todo (addTodo)="onAddTodo($event)"></app-add-todo>
+  <div class="container-fluid">
+    <div class="row">
+      <app-todo-item
+        *ngFor="let todoEl of todos"
+        [todo]="todoEl"
+        (deleteTodo)="onDeleteTodo($event)"
+      ></app-todo-item>
+    </div>
   </div>
 </div>

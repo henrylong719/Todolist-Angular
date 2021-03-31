@@ -1,0 +1,11 @@
+<form class="d-flex" #addTodoForm="ngForm" (ngSubmit)="onSubmit()">
+  <input
+    type="text"
+    name="title"
+    placeholder="Add to do..."
+    style="flex: 10"
+    ngModel
+    #title="ngModel"
+  />
+  <input class="btn btn-dark" style="flex: 1" type="submit" />
+</form>

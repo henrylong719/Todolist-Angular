@@ -33,4 +33,16 @@ export class TodoService {
   getTodos() {
     return this.todos;
   }
+
+  toggleTodos(todo: Todo) {}
+
+  deleteTodos(todo: Todo) {
+    this.todos = this.todos.filter((td) => td._id !== todo._id);
+
+    console.log(this.todos);
+  }
+
+  addTodos(todo: Todo) {
+    this.todos.push(todo);
+  }
 }

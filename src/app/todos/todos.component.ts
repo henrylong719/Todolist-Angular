@@ -15,4 +15,15 @@ export class TodosComponent implements OnInit {
   ngOnInit(): void {
     this.todos = this.todoService.getTodos();
   }
+
+  onDeleteTodo(todo: Todo) {
+    this.todos = this.todos.filter((td) => td._id !== todo._id);
+
+    this.todoService.deleteTodos(todo);
+  }
+
+  onAddTodo(todo: Todo) {
+    // this.todos.push(todo);
+    this.todoService.addTodos(todo);
+  }
 }
