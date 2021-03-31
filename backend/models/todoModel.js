@@ -1,0 +1,23 @@
+import mongoose from 'mongoose';
+
+const todoSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      trim: true,
+      required: [true, 'please add the title'],
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  {
+    // The timestamps option tells mongoose to assign createdAt and updatedAt fields to your schema. The type assigned is Date.
+    timestamps: true,
+  }
+);
+
+const Todo = mongoose.model('Todo', todoSchema);
+
+export default Todo;
