@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Todo } from './Todo.model';
 import { TodoService } from './todo.service';
 
@@ -7,13 +8,17 @@ import { TodoService } from './todo.service';
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.css'],
 })
-export class TodosComponent implements OnInit {
+export class TodosComponent implements OnInit, OnDestroy {
   todos: Todo[] = [];
+  todoSub: Subscription;
 
   constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
-    this.todos = this.todoService.getTodos();
+    this.todoSub = this.todoService.getTodos().subscribe((todos) => {
+      console.log(todos);
+      this.todos = todos;
+    });
   }
 
   onDeleteTodo(todo: Todo) {
@@ -26,5 +31,8 @@ export class TodosComponent implements OnInit {
     // console.log(todo);
     this.todos.push(todo);
     this.todoService.addTodos(todo);
+  }
+  ngOnDestroy() {
+    this.todoSub.unsubscribe();
   }
 }
