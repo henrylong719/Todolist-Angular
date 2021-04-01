@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthResponseData, AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -7,8 +11,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
   isLoginMode: boolean = true;
+  isLoading: boolean = true;
 
-  constructor() {}
+  error: string;
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
+
+  onSwitchMode() {
+    this.isLoginMode = !this.isLoginMode;
+  }
+
+  onSubmit(form: NgForm) {
+    const name = form.value.name;
+    const email = form.value.email;
+    const password = form.value.password;
+
+    let authObs: Observable<AuthResponseData>;
+
+    if (this.isLoginMode) {
+      authObs = this.authService.login(email, password);
+    } else {
+      // authObs = this.authService.register(name, email, password);
+    }
+
+    authObs.subscribe(
+      (resData) => {
+        this.isLoading = false;
+        this.router.navigate(['/dashboard']);
+      },
+      (errorMessage) => {
+        console.log(errorMessage);
+        this.error = errorMessage;
+        // this.isLoading = false;
+      }
+    );
+  }
 }
