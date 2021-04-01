@@ -31,7 +31,7 @@ export class AuthService {
 
   private tokenExpirationTimer: any;
 
-  authUrl: string = 'http://localhost:5000/api/users/';
+  authUrl: string = 'http://localhost:5000/api/users';
 
   login(email: string, password: string) {
     console.log(email, password);
@@ -61,6 +61,24 @@ export class AuthService {
         email,
         password,
       })
+      .pipe(
+        tap((resData) => {
+          this.handleAuthentication(
+            resData.name,
+            resData.email,
+            resData._id,
+            resData.isAdmin,
+            resData.token,
+            resData.expiresIn
+          );
+        })
+      );
+  }
+
+  // update user profile
+  updateUserProfile(updatedUser) {
+    return this.http
+      .put<AuthResponseData>(`${this.authUrl}/profile`, updatedUser)
       .pipe(
         tap((resData) => {
           this.handleAuthentication(
@@ -133,6 +151,7 @@ export class AuthService {
     this.tokenExpirationTimer = setTimeout(() => {
       this.logout();
     }, expirationDuration);
+    return true;
   }
 
   logout() {

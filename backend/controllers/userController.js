@@ -137,6 +137,7 @@ const updateUserProfile = async (req, res) => {
         email: updateUser.email,
         isAdmin: updateUser.isAdmin,
         token: generateToken(updateUser._id),
+        expiresIn: 3600,
       });
     } else {
       res.status(404).send('user not found');
