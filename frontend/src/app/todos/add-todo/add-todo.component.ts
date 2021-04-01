@@ -19,21 +19,8 @@ export class AddTodoComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // generate random string
-  makeid(length) {
-    var result = '';
-    var characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
-
   onSubmit() {
     const todo = {
-      _id: this.makeid(5),
       title: this.addTodoForm.value.title,
       completed: false,
     };

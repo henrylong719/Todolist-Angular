@@ -24,6 +24,7 @@ export class TodoItemComponent implements OnInit {
     // update UI
     todo.completed = !todo.completed;
     // update server
+    this.todoService.toggleTodos(todo);
   }
 
   onDelete(todo: Todo) {

@@ -1,8 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Todo } from './Todo.model';
 import { pluck } from 'rxjs/operators';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: 'my-auth-token',
+  }),
+};
 
 @Injectable({
   providedIn: 'root',
@@ -15,17 +22,22 @@ export class TodoService {
   constructor(private http: HttpClient) {}
 
   getTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(`${this.todoUrl}`).pipe(pluck('todos'));
+    return this.http.get<Todo[]>(`${this.todoUrl}`).pipe(pluck('data'));
   }
 
-  toggleTodos(todo: Todo) {}
+  toggleTodos(todo: Todo) {
+    const url = `${this.todoUrl}/${todo._id}`;
+    return this.http.put<Todo[]>(url, httpOptions).subscribe();
+  }
 
   deleteTodos(todo: Todo) {
-    // this.todos = this.todos.filter((td) => td._id !== todo._id);
-    // console.log(this.todos);
+    const url = `${this.todoUrl}/${todo._id}`;
+    return this.http.delete<Todo[]>(url, httpOptions);
   }
 
   addTodos(todo: Todo) {
-    // this.todos.push(todo);
+    return this.http
+      .post<Todo[]>(this.todoUrl, todo, httpOptions)
+      .pipe(pluck('data'));
   }
 }

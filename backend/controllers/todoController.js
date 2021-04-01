@@ -8,7 +8,7 @@ const getAllTodos = async (req, res) => {
   try {
     const todos = await Todo.find({});
 
-    return res.status(200).json({ todos });
+    return res.status(200).json({ data: todos });
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -22,6 +22,7 @@ const getAllTodos = async (req, res) => {
 // @access Public
 
 const addTodos = async (req, res) => {
+  console.log(req.body);
   try {
     const { title } = req.body;
 

@@ -10,29 +10,36 @@ import { TodoService } from './todo.service';
 })
 export class TodosComponent implements OnInit, OnDestroy {
   todos: Todo[] = [];
-  todoSub: Subscription;
+  getTodoSub: Subscription;
+  addTodoSub: Subscription;
+  deleteSub: Subscription;
 
   constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
-    this.todoSub = this.todoService.getTodos().subscribe((todos) => {
+    this.getTodoSub = this.todoService.getTodos().subscribe((todos) => {
       console.log(todos);
       this.todos = todos;
     });
   }
 
   onDeleteTodo(todo: Todo) {
-    this.todos = this.todos.filter((td) => td._id !== todo._id);
-
-    this.todoService.deleteTodos(todo);
+    this.deleteSub = this.todoService.deleteTodos(todo).subscribe(() => {
+      this.todos = this.todos.filter((td) => td._id !== todo._id);
+    });
   }
 
   onAddTodo(todo: Todo) {
     // console.log(todo);
-    this.todos.push(todo);
-    this.todoService.addTodos(todo);
+    this.addTodoSub = this.todoService
+      .addTodos(todo)
+      .subscribe((todo: Todo) => {
+        this.todos.push(todo);
+      });
   }
   ngOnDestroy() {
-    this.todoSub.unsubscribe();
+    this.getTodoSub.unsubscribe();
+    this.deleteSub.unsubscribe();
+    this.addTodoSub.unsubscribe();
   }
 }
