@@ -49,7 +49,7 @@ const registerUser = async (req, res) => {
       // 400: bad request
       return res.status(400).json({
         success: false,
-        error: 'User already exists',
+        error: 'Email already exists',
       });
     }
 

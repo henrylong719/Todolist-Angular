@@ -46,26 +46,42 @@ export class AuthService {
     console.log(email, password);
     return this.http
       .post<AuthResponseData>(`${this.authUrl}/login`, {
-        email: email,
-        password: password,
+        email,
+        password,
       })
       .pipe(
         tap((resData) => {
-          catchError(this.handleError),
-            this.handleAuthentication(
-              resData.name,
-              resData.email,
-              resData._id,
-              resData.isAdmin,
-              resData.token,
-              resData.expiresIn
-            );
+          this.handleAuthentication(
+            resData.name,
+            resData.email,
+            resData._id,
+            resData.isAdmin,
+            resData.token,
+            resData.expiresIn
+          );
         })
       );
   }
 
   register(name: string, email: string, password: string) {
-    console.log(name, email, password);
+    return this.http
+      .post<AuthResponseData>(`${this.authUrl}/register`, {
+        name,
+        email,
+        password,
+      })
+      .pipe(
+        tap((resData) => {
+          this.handleAuthentication(
+            resData.name,
+            resData.email,
+            resData._id,
+            resData.isAdmin,
+            resData.token,
+            resData.expiresIn
+          );
+        })
+      );
   }
 
   private handleAuthentication(
@@ -87,24 +103,5 @@ export class AuthService {
     // this.autoLogout(expiresIn * 1000);
 
     localStorage.setItem('userData', JSON.stringify(user));
-  }
-
-  private handleError(errorRes: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occurred!';
-    if (!errorRes.error || !errorRes.error.error) {
-      return throwError(errorMessage);
-    }
-    switch (errorRes.error.error.message) {
-      case 'EMAIL_EXISTS':
-        errorMessage = 'This email exists already';
-        break;
-      case 'EMAIL_NOT_FOUND':
-        errorMessage = 'This email does not exist';
-        break;
-      case 'INVALID_PASSWORD':
-        errorMessage = 'This password is not correct';
-        break;
-    }
-    return throwError(errorMessage);
   }
 }

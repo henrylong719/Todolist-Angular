@@ -21,6 +21,7 @@ export class AuthComponent implements OnInit {
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
+    this.error = '';
   }
 
   onSubmit(form: NgForm) {
@@ -33,18 +34,16 @@ export class AuthComponent implements OnInit {
     if (this.isLoginMode) {
       authObs = this.authService.login(email, password);
     } else {
-      // authObs = this.authService.register(name, email, password);
+      authObs = this.authService.register(name, email, password);
     }
 
     authObs.subscribe(
-      (resData) => {
+      () => {
         this.isLoading = false;
         this.router.navigate(['/dashboard']);
       },
       (errorMessage) => {
-        console.log(errorMessage);
-        this.error = errorMessage;
-        // this.isLoading = false;
+        this.error = errorMessage.error.error;
       }
     );
   }
