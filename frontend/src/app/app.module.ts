@@ -10,10 +10,10 @@ import { TodosComponent } from './todos/todos.component';
 import { TodoItemComponent } from './todos/todo-item/todo-item.component';
 import { AddTodoComponent } from './todos/add-todo/add-todo.component';
 import { FormsModule } from '@angular/forms';
-import { ProfileComponent } from './shared/profile/profile.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +22,9 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     TodosComponent,
     TodoItemComponent,
     AddTodoComponent,
-    ProfileComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

@@ -112,6 +112,7 @@ const getUserProfile = async (req, res) => {
 // $desc: update user profile
 // @route PUT /api/users/profile
 // @access private
+
 const updateUserProfile = async (req, res) => {
   try {
     // 1. find the user in the database

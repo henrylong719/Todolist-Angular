@@ -23,7 +23,6 @@ const getAllTodos = async (req, res) => {
 
 const getUserTodos = async (req, res, next) => {
   try {
-    console.log('test');
     const todos = await Todo.find({ user: req.user._id });
 
     return res.status(200).json({
