@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Todo } from './Todo.model';
 import { pluck } from 'rxjs/operators';
 
@@ -20,6 +20,9 @@ export class TodoService {
   todoUrl: string = 'http://localhost:5000/api/todos';
 
   constructor(private http: HttpClient) {}
+
+  // testing use of rxjs Subject
+  // completedUpdate = new Subject<string>();
 
   getTodos(): Observable<Todo[]> {
     return this.http.get<Todo[]>(`${this.todoUrl}`).pipe(pluck('data'));
