@@ -1,0 +1,58 @@
+<h1 class="text-center mt-5">To Do List</h1>
+<div class="form mx-auto" style="width: 30rem; margin-top: 4rem">
+  <div class="form-group" *ngIf="!isLoginMode">
+    <label for="email">Name</label>
+    <input
+      type="text"
+      id="name"
+      class="form-control"
+      ngModel
+      name="name"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input
+      type="email"
+      id="email"
+      class="form-control"
+      ngModel
+      name="email"
+      required
+      email
+    />
+    <div class="form-text text-muted">
+      We'll never share your email with anyone else.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="Password">Password</label>
+    <input
+      type="password"
+      id="password"
+      class="form-control"
+      ngModel
+      name="password"
+      required
+      password
+    />
+  </div>
+
+  <div *ngIf="isLoginMode; else registerMode">
+    <button class="btn btn-primary">Login</button>
+    <br />
+    <br />
+
+    <p>New Customer? <a href="#">Register</a></p>
+  </div>
+
+  <ng-template #registerMode>
+    <button class="btn btn-primary">Register</button>
+    <br />
+    <br />
+    <p>Have an account? <a href="#">Login</a></p>
+  </ng-template>
+</div>

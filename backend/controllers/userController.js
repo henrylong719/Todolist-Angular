@@ -9,8 +9,6 @@ const authUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    console.log('tes');
-
     const user = await User.findOne({ email });
 
     if (user && (await user.matchPassword(password))) {
@@ -20,6 +18,7 @@ const authUser = async (req, res) => {
         email: user.email,
         isAdmin: user.isAdmin,
         token: generateToken(user._id),
+        expiresIn: 3600,
       });
     } else {
       // 401 unauthorized
@@ -68,6 +67,7 @@ const registerUser = async (req, res) => {
         email: user.email,
         isAdmin: user.isAdmin,
         token: generateToken(user._id),
+        expiresIn: 3600,
       });
     } else {
       return res.status(400).json({

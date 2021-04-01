@@ -11,6 +11,7 @@ import { TodoItemComponent } from './todos/todo-item/todo-item.component';
 import { AddTodoComponent } from './todos/add-todo/add-todo.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './shared/profile/profile.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ProfileComponent } from './shared/profile/profile.component';
     TodoItemComponent,
     AddTodoComponent,
     ProfileComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
