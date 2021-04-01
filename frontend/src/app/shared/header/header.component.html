@@ -30,6 +30,24 @@
         >
       </li>
 
+      <li class="nav-item dropdown" *ngIf="user && user.isAdmin">
+        <a
+          class="nav-link dropdown-toggle"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Admin
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item">All Users</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item">All todos</a>
+        </div>
+      </li>
+
       <li class="nav-item" *ngIf="isAuthenticated">
         <a class="nav-link" style="cursor: pointer" (click)="onLogout()"
           >LOGOUT</a
@@ -37,4 +55,5 @@
       </li>
     </ul>
   </div>
+  <span class="navbar-text"> Signed in as: {{ user && user.name }} </span>
 </nav>
