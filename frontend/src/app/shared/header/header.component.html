@@ -42,9 +42,13 @@
           Admin
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item">All Users</a>
+          <a class="dropdown-item" [routerLink]="['/admin/user-list']"
+            >All Users</a
+          >
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item">All Todos</a>
+          <a class="dropdown-item" [routerLink]="['/admin/todo-list']"
+            >All Todos</a
+          >
         </div>
       </li>
 

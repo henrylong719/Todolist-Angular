@@ -15,6 +15,8 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { UserComponent } from './user/user.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { UserListComponent } from './admin/user-list/user-list.component';
+import { TodoListComponent } from './admin/todo-list/todo-list.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     LoadingSpinnerComponent,
     UserComponent,
     FooterComponent,
+    UserListComponent,
+    TodoListComponent,
   ],
   imports: [
     BrowserModule,
