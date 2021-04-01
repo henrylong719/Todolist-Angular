@@ -17,6 +17,26 @@ const getAllTodos = async (req, res) => {
   }
 };
 
+// $desc   Get user todos
+// @route  GET /api/user-todos
+// @access Public
+
+const getUserTodos = async (req, res, next) => {
+  try {
+    const todos = await Todo.find({ user: req.user._id });
+
+    return res.status(200).json({
+      success: true,
+      data: todos,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: 'Server error',
+    });
+  }
+};
+
 // $desc add todos
 // @route POST /api/todos
 // @access Public
@@ -98,4 +118,4 @@ const toggleTodos = async (req, res) => {
   }
 };
 
-export { getAllTodos, addTodos, deleteTodos, toggleTodos };
+export { getAllTodos, addTodos, deleteTodos, toggleTodos, getUserTodos };

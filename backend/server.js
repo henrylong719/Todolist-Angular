@@ -3,8 +3,10 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import morgan from 'morgan';
 import colors from 'colors';
-import todoRoutes from './routes/todoRoutes.js';
 import cors from 'cors';
+
+import todoRoutes from './routes/todoRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
 
@@ -21,7 +23,7 @@ app.use(express.json());
 // connect database
 connectDB();
 
-// allow angular access node.js localhost
+// allow angular access node server
 // Set up CORS
 app.use(
   cors({
@@ -42,6 +44,9 @@ app.use(
 // anything goes to the /api/todos, link to the todoRoutes
 app.use('/api/todos', todoRoutes);
 
+// anything goes to the /api/users, link to the userRoutes
+app.use('/api/users', userRoutes);
+
 app.get('/', (req, res) => {
   res.send('app is running');
 });
@@ -50,5 +55,7 @@ const PORT = process.env.PORT | 5000;
 
 app.listen(
   5000,
-  console.log(`Server running in ${process.env.NODE_ENV} mode  on port ${PORT}`)
+  console.log(
+    `Server running in ${process.env.NODE_ENV} mode  on port ${PORT}`.green.bold
+  )
 );
