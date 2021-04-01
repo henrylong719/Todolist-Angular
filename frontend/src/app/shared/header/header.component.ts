@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faListUl } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,25 @@ import { faListUl } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {}
   // todolist logo
   faListUl = faListUl;
+
+  isAuthenticated = false;
+  private userSub: Subscription;
+
+  ngOnInit(): void {
+    this.userSub = this.authService.user.subscribe((user) => {
+      this.isAuthenticated = user ? true : false;
+    });
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
+  }
+
+  onLogout() {
+    this.authService.logout();
+  }
 }

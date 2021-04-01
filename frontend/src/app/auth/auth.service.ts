@@ -104,4 +104,6 @@ export class AuthService {
 
     localStorage.setItem('userData', JSON.stringify(user));
   }
+
+  logout() {}
 }

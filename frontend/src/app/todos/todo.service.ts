@@ -17,7 +17,7 @@ const httpOptions = {
 export class TodoService {
   todos: Todo[] = [];
 
-  todoUrl: string = 'http://localhost:5000/api/todos';
+  todoUrl: string = 'http://localhost:5000/api/todos/user-todos';
 
   constructor(private http: HttpClient) {}
 

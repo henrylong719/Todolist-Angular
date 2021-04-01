@@ -12,10 +12,13 @@ import {
   toggleTodos,
 } from '../controllers/todoController.js';
 
-router.route('/').get(getAllTodos).post(addTodos);
+// get all todos (admin)
+router.route('/all-todos').get(protect, admin, getAllTodos);
 
-router.route('/user-todos').get(protect, getUserTodos);
+// get or post individual todos (user)
+router.route('/user-todos').get(protect, getUserTodos).post(protect, addTodos);
 
-router.route('/:id').delete(deleteTodos).put(toggleTodos);
+// delete or put individual todos (user)
+router.route('/user-todos/:id').delete(deleteTodos).put(toggleTodos);
 
 export default router;

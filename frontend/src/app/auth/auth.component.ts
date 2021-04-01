@@ -11,7 +11,7 @@ import { AuthResponseData, AuthService } from './auth.service';
 })
 export class AuthComponent implements OnInit {
   isLoginMode: boolean = true;
-  isLoading: boolean = true;
+  isLoading: boolean = false;
 
   error: string;
 
@@ -29,6 +29,8 @@ export class AuthComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
 
+    this.isLoading = true;
+
     let authObs: Observable<AuthResponseData>;
 
     if (this.isLoginMode) {
@@ -43,6 +45,7 @@ export class AuthComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       },
       (errorMessage) => {
+        this.isLoading = false;
         this.error = errorMessage.error.error;
       }
     );

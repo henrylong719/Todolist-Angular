@@ -1,8 +1,8 @@
 import Todo from '../models/todoModel.js';
 
 // $desc   Get all todos
-// @route  GET /api/todos
-// @access Public
+// @route  GET /api/todos/all-todos
+// @access Admin
 
 const getAllTodos = async (req, res) => {
   try {
@@ -23,6 +23,7 @@ const getAllTodos = async (req, res) => {
 
 const getUserTodos = async (req, res, next) => {
   try {
+    console.log('test');
     const todos = await Todo.find({ user: req.user._id });
 
     return res.status(200).json({
@@ -38,17 +39,21 @@ const getUserTodos = async (req, res, next) => {
 };
 
 // $desc add todos
-// @route POST /api/todos
+// @route POST /api/todos/user-todos
 // @access Public
 
 const addTodos = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
+
   try {
     const { title } = req.body;
 
     const todo = await Todo.create({
       title,
+      user: req.user.id,
     });
+
+    console.log(todo);
 
     return res.status(201).json({
       success: true,
@@ -63,7 +68,7 @@ const addTodos = async (req, res) => {
 };
 
 // $desc delete todos
-// @route DELETE /api/todos/:id
+// @route DELETE /api/todos/user-todos/:id
 // @access Public
 
 const deleteTodos = async (req, res) => {
@@ -91,7 +96,7 @@ const deleteTodos = async (req, res) => {
 };
 
 // $desc toggle todos
-// route PUT /api/todos/:id
+// route PUT /api/todos/user-todos/:id
 // @access Public
 
 const toggleTodos = async (req, res) => {
