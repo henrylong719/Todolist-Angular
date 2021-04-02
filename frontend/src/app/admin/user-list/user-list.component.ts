@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -18,7 +19,9 @@ import { Subscription } from 'rxjs';
 export class UserListComponent implements OnInit {
   constructor(
     private adminService: AdminService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
   // font awesome logo
   faTrash = faTrash;
@@ -49,5 +52,7 @@ export class UserListComponent implements OnInit {
     }
   }
 
-  onEditUser() {}
+  onEditUser(id: string) {
+    this.router.navigate([id, 'edit'], { relativeTo: this.route });
+  }
 }

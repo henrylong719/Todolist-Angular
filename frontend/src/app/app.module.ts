@@ -17,6 +17,7 @@ import { UserComponent } from './user/user.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { UserListComponent } from './admin/user-list/user-list.component';
 import { TodoListComponent } from './admin/todo-list/todo-list.component';
+import { EditUserComponent } from './admin/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { TodoListComponent } from './admin/todo-list/todo-list.component';
     FooterComponent,
     UserListComponent,
     TodoListComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

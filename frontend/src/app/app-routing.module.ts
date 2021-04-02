@@ -7,6 +7,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { TodosComponent } from './todos/todos.component';
 import { UserComponent } from './user/user.component';
 import { AdminGuard } from './admin/admin.guard';
+import { EditUserComponent } from './admin/edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -16,6 +17,11 @@ const routes: Routes = [
   {
     path: 'admin/user-list',
     component: UserListComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'admin/user-list/:id/edit',
+    component: EditUserComponent,
     canActivate: [AdminGuard],
   },
   {

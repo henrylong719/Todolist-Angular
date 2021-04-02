@@ -30,4 +30,9 @@ export class AdminService {
     const url = `${this.userListUrl}/${id}`;
     return this.http.delete(url, httpOptions);
   }
+
+  getUserById(id: string): Observable<User> {
+    const url = `${this.userListUrl}/${id}`;
+    return this.http.get<User>(url);
+  }
 }
