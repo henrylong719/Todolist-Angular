@@ -19,7 +19,7 @@ const authUser = async (req, res) => {
         email: user.email,
         isAdmin: user.isAdmin,
         token: generateToken(user._id),
-        expiresIn: 3600,
+        expiresIn: +process.env.TOKEN_EXPIRESIN / 1000, // 7200 s
       });
     } else {
       // 401 unauthorized
@@ -176,6 +176,7 @@ const deleteUser = async (req, res) => {
     if (user) {
       let todos = await Todo.find({ user: user._id });
 
+      // remove all todos related to the user
       todos.map(async (todo) => {
         await Todo.findById(todo._id).remove();
       });
