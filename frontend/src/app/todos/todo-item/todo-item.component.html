@@ -4,7 +4,7 @@
       class="card-body p-0"
       [ngStyle]="{ textDecoration: todo.completed ? 'line-through' : 'none' }"
     >
-      <h5 class="card-header">{{ todo.createdAt | date: 'longDate' }}</h5>
+      <h5 class="card-header">{{ todo.createdAt.substring(0, 10) }}</h5>
       <div class="card-body">
         <p class="card-text">
           <strong>{{ todo.title }}</strong>

@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../auth/user.model';
 import { pluck } from 'rxjs/operators';
+import { Todo } from '../todos/Todo.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,6 +20,8 @@ export class AdminService {
   users: User[] = [];
 
   userListUrl: string = 'http://localhost:5000/api/users/admin/user-list';
+
+  todoListUrl: string = 'http://localhost:5000/api/todos/admin/todo-list';
 
   constructor(private http: HttpClient) {}
 
@@ -39,5 +42,14 @@ export class AdminService {
   updateUserById(id: string, updatedUser) {
     const url = `${this.userListUrl}/${id}`;
     return this.http.put(url, updatedUser, httpOptions);
+  }
+
+  getAllTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(`${this.todoListUrl}`).pipe(pluck('data'));
+  }
+
+  deleteTodo(id: string) {
+    const url = `http://localhost:5000/api/todos/user-todos/${id}`;
+    return this.http.delete<Todo[]>(url, httpOptions);
   }
 }

@@ -1,1 +1,45 @@
-<p>todo-list works!</p>
+<div class="div" style="min-height: 40vw">
+  <div class="container-fluid mt-3">
+    <h1>All Todos</h1>
+    <table
+      class="table table-striped table-bordered table-hover table-sm text-center"
+    >
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>DATE</th>
+          <th>TODOS</th>
+          <th>USER</th>
+          <th>COMPLETED</th>
+          <th>EDIT</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let todo of todos">
+          <td class="align-middle">{{ todo._id }}</td>
+          <td class="align-middle">{{ todo.createdAt.substring(0, 10) }}</td>
+          <td class="align-middle">{{ todo.title }}</td>
+          <td class="align-middle">{{ todo.user.name }}</td>
+
+          <td class="align-middle" *ngIf="!todo.completed" style="color: red">
+            <fa-icon [icon]="faTimes"></fa-icon>
+          </td>
+
+          <td class="align-middle" *ngIf="todo.completed" style="color: green">
+            <fa-icon [icon]="faCheck"></fa-icon>
+          </td>
+
+          <td class="align-middle">
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="onDeleteTodo(todo._id)"
+            >
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

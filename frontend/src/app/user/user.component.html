@@ -85,7 +85,7 @@
           <tr *ngFor="let todo of todos">
             <td class="align-middle">{{ todo._id }}</td>
             <td class="align-middle">
-              {{ todo.createdAt | date: 'longDate' }}
+              {{ todo.createdAt.substring(0, 10) }}
             </td>
             <td class="align-middle">{{ todo.title }}</td>
             <td class="align-middle" *ngIf="!todo.completed" style="color: red">
