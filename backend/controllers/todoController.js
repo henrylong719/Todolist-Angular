@@ -1,12 +1,12 @@
 import Todo from '../models/todoModel.js';
 
 // $desc   Get all todos
-// @route  GET /api/todos/all-todos
+// @route  GET /api/todos/admin/todo-list
 // @access Admin
 
 const getAllTodos = async (req, res) => {
   try {
-    const todos = await Todo.find({});
+    const todos = await Todo.find({}).populate('user', 'name');
 
     return res.status(200).json({ data: todos });
   } catch (error) {

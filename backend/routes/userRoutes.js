@@ -25,10 +25,10 @@ router
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile);
 
-router.route('/').get(protect, admin, getAllUsers);
+router.route('/admin/user-list').get(protect, admin, getAllUsers);
 
 router
-  .route('/:id')
+  .route('/admin/user-list/:id')
   .delete(protect, admin, deleteUser)
   .put(protect, admin, updateUser)
   .get(protect, admin, getUserById);

@@ -13,7 +13,7 @@ import {
 } from '../controllers/todoController.js';
 
 // get all todos (admin)
-router.route('/all-todos').get(protect, admin, getAllTodos);
+router.route('/admin/todo-list').get(protect, admin, getAllTodos);
 
 // get or post individual todos (user)
 router.route('/user-todos').get(protect, getUserTodos).post(protect, addTodos);

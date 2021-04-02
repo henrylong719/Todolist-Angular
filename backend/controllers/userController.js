@@ -1,4 +1,5 @@
 import User from '../models/userModel.js';
+import Todo from '../models/todoModel.js';
 import generateToken from '../utils/generateToken.js';
 
 // $desc  Get Auth user & get Token
@@ -84,7 +85,7 @@ const registerUser = async (req, res) => {
 };
 
 // $desc: Get user profile
-// @route GET/ /api/users/profile
+// @route GET /api/users/profile
 // @access private
 
 const getUserProfile = async (req, res) => {
@@ -140,7 +141,7 @@ const updateUserProfile = async (req, res) => {
         expiresIn: 3600,
       });
     } else {
-      res.status(404).send('user not found');
+      res.status(404).json({ message: 'user not found' });
     }
   } catch (error) {
     return res.status(500).json({
@@ -151,12 +152,12 @@ const updateUserProfile = async (req, res) => {
 };
 
 // $desc: get all users
-// @route: GET api/users
+// @route: GET api/users/admin/user-list
 // @access: admin
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find({}).select('-password');
-    return res.status(200).json(users);
+    return res.status(200).json({ data: users });
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -166,17 +167,24 @@ const getAllUsers = async (req, res) => {
 };
 
 // $desc delete user
-// @route DELETE api/user/:id
+// @route DELETE api/users/admin/user-list/:id
 // @access: admin
 const deleteUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
 
     if (user) {
+      let todos = await Todo.find({ user: user._id });
+
+      todos.map(async (todo) => {
+        await Todo.findById(todo._id).remove();
+      });
+
       await user.remove();
-      return res.status(200).send('user removed');
+
+      return res.status(200).json({ message: 'user removed' });
     } else {
-      return res.status(404).send('user not found');
+      return res.status(404).json({ message: 'user not found' });
     }
   } catch (error) {
     return res.status(500).json({
@@ -187,7 +195,7 @@ const deleteUser = async (req, res) => {
 };
 
 // $desc update user
-// @route PUT api/user/:id
+// @route PUT api/users/admin/user-list/:id
 // @access admin
 
 const updateUser = async (req, res) => {
@@ -214,7 +222,7 @@ const updateUser = async (req, res) => {
         token: generateToken(updatedUser._id),
       });
     } else {
-      return res.status(404).send('user not found');
+      return res.status(404).json({ message: 'user not found' });
     }
   } catch (error) {
     return res.status(500).json({
@@ -223,6 +231,10 @@ const updateUser = async (req, res) => {
     });
   }
 };
+
+// $desc update user
+// @route GET api/users/admin/user-list/:id
+// @access admin
 
 const getUserById = async (req, res) => {
   try {
