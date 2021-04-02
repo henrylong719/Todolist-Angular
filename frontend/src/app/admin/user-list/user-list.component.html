@@ -1,1 +1,50 @@
-<p>user-list works!</p>
+<div class="div">
+  <div class="container-fluid mt-3">
+    <h1>Users</h1>
+    <table
+      class="table table-striped table-bordered table-hover table-sm text-center"
+    >
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>EMAIL</th>
+          <th>ADMIN</th>
+          <th>EDIT</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td class="align-middle">{{ user._id }}</td>
+          <td class="align-middle">{{ user.name }}</td>
+          <td class="align-middle">{{ user.email }}</td>
+          <td class="align-middle" *ngIf="!user.isAdmin" style="color: red">
+            <fa-icon [icon]="faTimes"></fa-icon>
+          </td>
+
+          <td class="align-middle" *ngIf="user.isAdmin" style="color: green">
+            <fa-icon [icon]="faCheck"></fa-icon>
+          </td>
+
+          <td class="align-middle">
+            <button
+              class="btn btn-sm btn-light"
+              (click)="onEditUser(user._id)"
+              *ngIf="user._id !== currentUser._id"
+            >
+              <fa-icon [icon]="faEdit"></fa-icon>
+            </button>
+
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="onDeleteUser(user._id)"
+            >
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
