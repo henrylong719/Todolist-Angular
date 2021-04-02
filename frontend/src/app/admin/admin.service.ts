@@ -35,4 +35,9 @@ export class AdminService {
     const url = `${this.userListUrl}/${id}`;
     return this.http.get<User>(url);
   }
+
+  updateUserById(id: string, updatedUser) {
+    const url = `${this.userListUrl}/${id}`;
+    return this.http.put(url, updatedUser, httpOptions);
+  }
 }

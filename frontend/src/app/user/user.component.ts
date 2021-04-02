@@ -81,7 +81,7 @@ export class UserComponent implements OnInit, OnDestroy {
         }
       );
     } else {
-      this.error = 'passwords do not match';
+      this.error = 'passwords do not match!';
     }
   }
   ngOnDestroy() {
