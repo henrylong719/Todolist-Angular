@@ -31,7 +31,7 @@ const authUser = async (req, res) => {
   } catch (err) {
     return res.status(500).json({
       success: false,
-      error: 'Server error',
+      error: 'Server Error',
     });
   }
 };
@@ -68,7 +68,7 @@ const registerUser = async (req, res) => {
         email: user.email,
         isAdmin: user.isAdmin,
         token: generateToken(user._id),
-        expiresIn: 3600,
+        expiresIn: +process.env.TOKEN_EXPIRESIN / 1000,
       });
     } else {
       return res.status(400).json({
@@ -79,7 +79,7 @@ const registerUser = async (req, res) => {
   } catch (err) {
     return res.status(500).json({
       success: false,
-      error: 'Server error',
+      error: 'Server Error',
     });
   }
 };
@@ -105,7 +105,7 @@ const getUserProfile = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      error: 'Server error',
+      error: 'Server Error',
     });
   }
 };
@@ -138,7 +138,7 @@ const updateUserProfile = async (req, res) => {
         email: updateUser.email,
         isAdmin: updateUser.isAdmin,
         token: generateToken(updateUser._id),
-        expiresIn: 3600,
+        expiresIn: +process.env.TOKEN_EXPIRESIN / 1000,
       });
     } else {
       res.status(404).json({ message: 'user not found' });
@@ -146,7 +146,7 @@ const updateUserProfile = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      error: 'Server error',
+      error: 'Server Error  Invalid Email',
     });
   }
 };
@@ -161,7 +161,7 @@ const getAllUsers = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      error: 'Server error',
+      error: 'Server Error',
     });
   }
 };
@@ -190,7 +190,7 @@ const deleteUser = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      error: 'Server error',
+      error: 'Server Error',
     });
   }
 };
@@ -228,7 +228,7 @@ const updateUser = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      error: 'Server error',
+      error: 'Server Error',
     });
   }
 };
@@ -254,7 +254,7 @@ const getUserById = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      error: 'Server error',
+      error: 'Server Error',
     });
   }
 };
