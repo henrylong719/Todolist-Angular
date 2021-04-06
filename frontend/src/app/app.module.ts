@@ -6,9 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TodosComponent } from './todos/todos.component';
-import { TodoItemComponent } from './todos/todo-item/todo-item.component';
-import { AddTodoComponent } from './todos/add-todo/add-todo.component';
 import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
@@ -18,14 +15,12 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { UserListComponent } from './admin/user-list/user-list.component';
 import { TodoListComponent } from './admin/todo-list/todo-list.component';
 import { EditUserComponent } from './admin/edit-user/edit-user.component';
+import { TodosModule } from './todos/todos.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    TodosComponent,
-    TodoItemComponent,
-    AddTodoComponent,
     AuthComponent,
     LoadingSpinnerComponent,
     UserComponent,
@@ -40,6 +35,7 @@ import { EditUserComponent } from './admin/edit-user/edit-user.component';
     FontAwesomeModule,
     FormsModule,
     HttpClientModule,
+    TodosModule,
   ],
   providers: [
     {
