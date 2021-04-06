@@ -5,9 +5,10 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AdminRoutingModule } from './admin-routing.module';
 
 @NgModule({
   declarations: [UserListComponent, TodoListComponent, EditUserComponent],
-  imports: [CommonModule, FormsModule, FontAwesomeModule],
+  imports: [CommonModule, FormsModule, FontAwesomeModule, AdminRoutingModule],
 })
 export class AdminModule {}

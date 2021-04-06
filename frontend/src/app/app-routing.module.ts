@@ -11,24 +11,6 @@ import { EditUserComponent } from './admin/edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: TodosComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: UserComponent, canActivate: [AuthGuard] },
-  { path: 'auth', component: AuthComponent },
-  {
-    path: 'admin/user-list',
-    component: UserListComponent,
-    canActivate: [AdminGuard],
-  },
-  {
-    path: 'admin/user-list/:id/edit',
-    component: EditUserComponent,
-    canActivate: [AdminGuard],
-  },
-  {
-    path: 'admin/todo-list',
-    component: TodoListComponent,
-    canActivate: [AdminGuard],
-  },
 ];
 
 @NgModule({
