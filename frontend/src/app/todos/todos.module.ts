@@ -3,19 +3,25 @@ import { CommonModule } from '@angular/common';
 import { TodosComponent } from './todos.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { AddTodoComponent } from './add-todo/add-todo.component';
-import { AppRoutingModule } from '../app-routing.module';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
-import { TodosRoutingModule } from './todos-routing.module';
+import { RouterModule } from '@angular/router';
+import { AuthGuard } from '../auth/auth.guard';
 
 @NgModule({
   declarations: [TodosComponent, TodoItemComponent, AddTodoComponent],
   imports: [
     CommonModule,
-    AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
-    TodosRoutingModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: TodosComponent,
+        canActivate: [AuthGuard],
+      },
+    ]),
   ],
 })
 export class TodosModule {}

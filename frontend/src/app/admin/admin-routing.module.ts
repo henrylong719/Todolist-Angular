@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../auth/auth.guard';
 import { AdminGuard } from './admin.guard';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { TodoListComponent } from './todo-list/todo-list.component';

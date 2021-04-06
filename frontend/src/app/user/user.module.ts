@@ -13,7 +13,7 @@ import { AuthGuard } from '../auth/auth.guard';
     FormsModule,
     FontAwesomeModule,
     RouterModule.forChild([
-      { path: 'profile', component: UserComponent, canActivate: [AuthGuard] },
+      { path: '', component: UserComponent, canActivate: [AuthGuard] },
     ]),
   ],
 })
