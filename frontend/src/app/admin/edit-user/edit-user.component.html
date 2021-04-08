@@ -3,89 +3,85 @@
     Go Back
   </button>
 
-  <div class="d-flex justify-content-md-center">
-    <div class="row">
-      <div class="col xs-12 md-6">
-        <h1>Edit User</h1>
-
-        <form
-          #userEditForm="ngForm"
-          (ngSubmit)="onSubmit()"
-          ngNativeValidate
-          style="width: 30rem"
-        >
-          <div class="alert alert-primary" role="alert" *ngIf="message">
-            {{ message }}
-          </div>
-
-          <div class="alert alert-danger" *ngIf="error">
-            <p>{{ error }}</p>
-          </div>
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input
-              type="text"
-              placeholder="Enter Name"
-              class="form-control"
-              name="name"
-              id="name"
-              ngModel
-              #name="ngModel"
-            />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              placeholder="Enter Email"
-              class="form-control"
-              id="email"
-              name="email"
-              email
-              ngModel
-              #email="ngModel"
-            />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              placeholder="Enter Password"
-              class="form-control"
-              id="password"
-              name="password"
-              ngModel
-              #password="ngModel"
-              minlength="6"
-            />
-          </div>
-          <div class="form-group">
-            <label for="confirmedPassword">Confirm Password</label>
-            <input
-              type="password"
-              placeholder="Enter Confirmed Password"
-              class="form-control"
-              id="confirmedPassword"
-              name="confirmedPassword"
-              ngModel
-              #confirmPassword="ngModel"
-              minlength="6"
-            />
-          </div>
-
-          <div class="form-group">
-            <input
-              type="checkbox"
-              id="isAdmin"
-              name="isAdmin"
-              ngModel
-              #isAdmin="ngModel"
-            />
-            <label for="isAdmin" class="ml-2 mt-1">isAdmin</label>
-          </div>
-          <button class="btn btn-primary" type="submit">Update</button>
-        </form>
+  <div>
+    <form
+      class="form mx-auto col-sm-3"
+      #userEditForm="ngForm"
+      (ngSubmit)="onSubmit()"
+      ngNativeValidate
+      style="max-width: 30rem"
+    >
+      <h1>Edit User</h1>
+      <div class="alert alert-primary" role="alert" *ngIf="message">
+        {{ message }}
       </div>
-    </div>
+
+      <div class="alert alert-danger" *ngIf="error">
+        <p>{{ error }}</p>
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          placeholder="Enter Name"
+          class="form-control"
+          name="name"
+          id="name"
+          ngModel
+          #name="ngModel"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          placeholder="Enter Email"
+          class="form-control"
+          id="email"
+          name="email"
+          email
+          ngModel
+          #email="ngModel"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          class="form-control"
+          id="password"
+          name="password"
+          ngModel
+          #password="ngModel"
+          minlength="6"
+        />
+      </div>
+      <div class="form-group">
+        <label for="confirmedPassword">Confirm Password</label>
+        <input
+          type="password"
+          placeholder="Enter Confirmed Password"
+          class="form-control"
+          id="confirmedPassword"
+          name="confirmedPassword"
+          ngModel
+          #confirmPassword="ngModel"
+          minlength="6"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="checkbox"
+          id="isAdmin"
+          name="isAdmin"
+          ngModel
+          #isAdmin="ngModel"
+        />
+        <label for="isAdmin" class="ml-2 mt-1">isAdmin</label>
+      </div>
+      <button class="btn btn-primary" type="submit">Update</button>
+    </form>
   </div>
 </div>

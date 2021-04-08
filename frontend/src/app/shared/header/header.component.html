@@ -3,7 +3,18 @@
     <fa-icon [icon]="faListUl"></fa-icon> TODOLIST</a
   >
 
-  <div class="collapse navbar-collapse" id="navbarColor03">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarText"
+    aria-controls="navbarText"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" *ngIf="!isAuthenticated">
         <a class="nav-link" [routerLink]="['/auth']" routerLinkActive="active"
@@ -59,7 +70,7 @@
       </li>
     </ul>
   </div>
-  <span *ngIf="isAuthenticated" class="navbar-text">
+  <span *ngIf="isAuthenticated" class="navbar-text" class="d-none d-lg-block">
     Signed in as: {{ user && user.name }}
   </span>
 </nav>

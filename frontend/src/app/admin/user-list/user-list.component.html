@@ -1,4 +1,4 @@
-<div class="div" style="min-height: 40vw">
+<div>
   <div class="container-fluid mt-3">
     <h1>Users</h1>
     <table
@@ -6,9 +6,9 @@
     >
       <thead>
         <tr>
-          <th>ID</th>
+          <th class="d-none d-lg-block border-0">ID</th>
           <th>NAME</th>
-          <th>EMAIL</th>
+          <th class="d-none d-lg-block border-0">EMAIL</th>
           <th>ADMIN</th>
           <th>EDIT</th>
         </tr>
@@ -16,9 +16,13 @@
 
       <tbody>
         <tr *ngFor="let user of users">
-          <td class="align-middle">{{ user._id }}</td>
+          <td class="align-middle d-none d-lg-block border-0">
+            {{ user._id }}
+          </td>
           <td class="align-middle">{{ user.name }}</td>
-          <td class="align-middle">{{ user.email }}</td>
+          <td class="align-middle d-none d-lg-block border-0">
+            {{ user.email }}
+          </td>
           <td class="align-middle" *ngIf="!user.isAdmin" style="color: red">
             <fa-icon [icon]="faTimes"></fa-icon>
           </td>

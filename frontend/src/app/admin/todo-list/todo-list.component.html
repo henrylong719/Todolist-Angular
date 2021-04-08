@@ -1,4 +1,4 @@
-<div class="div" style="min-height: 40vw">
+<div>
   <div class="container-fluid mt-3">
     <h1>All Todos</h1>
     <table
@@ -6,10 +6,10 @@
     >
       <thead>
         <tr>
-          <th>ID</th>
+          <th class="d-none d-lg-block border-0">ID</th>
           <th>DATE</th>
           <th>TODOS</th>
-          <th>USER</th>
+          <th class="d-none d-lg-block border-0">USER</th>
           <th>COMPLETED</th>
           <th>EDIT</th>
         </tr>
@@ -17,10 +17,14 @@
 
       <tbody>
         <tr *ngFor="let todo of todos">
-          <td class="align-middle">{{ todo._id }}</td>
+          <td class="align-middle d-none d-lg-block border-0">
+            {{ todo._id }}
+          </td>
           <td class="align-middle">{{ todo.createdAt.substring(0, 10) }}</td>
           <td class="align-middle">{{ todo.title }}</td>
-          <td class="align-middle">{{ todo.user.name }}</td>
+          <td class="align-middle d-none d-lg-block border-0">
+            {{ todo.user.name }}
+          </td>
 
           <td class="align-middle" *ngIf="!todo.completed" style="color: red">
             <fa-icon [icon]="faTimes"></fa-icon>
