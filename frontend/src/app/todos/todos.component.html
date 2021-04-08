@@ -1,7 +1,7 @@
 <div style="min-height: 75vh">
   <app-add-todo (addTodo)="onAddTodo($event)"></app-add-todo>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row justify-content-between px-3">
       <app-todo-item
         *ngFor="let todoEl of todos"
         [todo]="todoEl"
